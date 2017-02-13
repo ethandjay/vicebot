@@ -5,10 +5,10 @@ from sys import exit
 
 def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = sentence
-	ans.replace("$first_name", first_name)
-	ans.replace("$last_name", last_name)
-	ans.replace("$place", place)
-	ans.replace("$vip", vip)
+	ans = ans.replace('$first_name', first_name)
+	ans = ans.replace('$last_name', last_name)
+	ans = ans.replace('$place', place)
+	ans = ans.replace('$vip', vip)
 	return ans
 
 
@@ -120,7 +120,7 @@ place_list = [
 	'The slums of capetown',
 	'Compton',
 	'the Catacombs Vatican',
-	'Sauer St.  in Houston',
+	'Sauer St. in Houston',
 	'Anchorage, Alaska',
 	'The Witches Hut in the Black Forest',
 	'Boorian Tundra',
@@ -129,7 +129,7 @@ place_list = [
 	'Quin Shi Huang ',
 	'A Lady Boy Strip-club in Southeast Bangcock',
 	'The orgy clubs of 1960\'s Moscow',
-	'A sauerkraut  cafe in Warsaw\'s Zoliborz Ghetto',
+	'A sauerkraut cafe in Warsaw\'s Zoliborz Ghetto',
 	'Medellin Columbia\'s Most Exclusive Cartel Hideout',
 	'Sarah Lawrence\'s Annual Coffee & Cloitus Student Faculty meeting',
 	'A Bicycle Smoothie Shop in North Portland',
@@ -140,7 +140,7 @@ place_list = [
 	'At the Backseat of a Toyota Tundra in an Isis Camp in Raqua, Syria',
 	'Mussolini\'s Fetish Dungeon in Italian Wine Country',
 	'Manilla, Philippines at a Lady Boy auction',
-	'Oslo, Norway at a Nobel Price  Pregrame',
+	'Oslo, Norway at a Nobel Price Pregame',
 	'An Albanian "Supreme" Sweatshop',
 	'The "Furry Hamster IPA" brewery in San Francisco ',
 	'A Protest Concerning Walmarts Inaugural Superstore in Brooklyn',
@@ -205,7 +205,7 @@ vip_list = [
 	'Bodyart Suspension Gurus',
 	'Lizard People',
 	'A Vegen, Transgendered, Pansexual Catholic Priest',
-	'The Witoto Tribe of  Northern Peru',
+	'The Witoto Tribe of Northern Peru',
 	'Keannu Reeves',
 	'Reese Witherspoon\'s Chin',
 	'Martin Scorsese',
@@ -221,7 +221,7 @@ vip_list = [
 	'Orlando\'s Aryan Brotherhood Chapter',
 	'Mike D of the Beastie Boys',
 	'Ghostface Killah',
-	'The Shanghai Center of Commerce Executive Board',
+	'The Shanghai Center of Commerce Executive Board',
 	'The New Branchwick Heroine Appreciation club',
 	'A Yale Psychology Major turned Starbucks Barista',
 	'William Wallace',
@@ -257,7 +257,7 @@ vip_list = [
 	'Ghengis Khan descendant John McDowel',
 	'Australian Base Jumpers',
 	'Father John Nasty, Orthodox Priest turned Prolific Stripper',
-	'AK-47 Toting  Blood Diamond Children',
+	'AK-47 Toting Blood Diamond Children',
 	'Ironic High Schoolers',
 	'The Iowa/Nebraska/Missouri Tristate Corn Hole Team',
 	'Appalachian Coal Miners',
@@ -283,8 +283,8 @@ vip_list = [
 	'Columbus State Community College Dropouts',
 	'The Illuminati',
 	'A Joradanian Uber Driver',
-	'An  Hip Hop Producer turned Undercover Imagineer',
-	'New York\'s  Wikkan Construction Workers',
+	'An Hip Hop Producer turned Undercover Imagineer',
+	'New York\'s Wikkan Construction Workers',
 	'Bangladeshi Basket Weavers',
 	'Hong Kong Freemasons',
 	'Indonesian Curry Smugglers',
@@ -326,8 +326,10 @@ try:
 except twitter.TwitterError:
 	print api.message
 
+print "Tweet: " + tweet
+
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 with open(os.path.join(__location__, 'Tweets.txt'), 'a') as file:
-	file.write(tweet)
+	file.write(tweet + '\n')
 
 exit()
