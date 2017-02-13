@@ -13,8 +13,7 @@ called OAuthSettings.py, saved in the following format:
     }
   
 **REQUIRES**
-* dateutil  
-http://labix.org/python-dateutil
+
 * OAuthlib  
 https://github.com/requests/requests-oauthlib
 * Python Twitter  
