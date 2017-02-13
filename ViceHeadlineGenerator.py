@@ -5,30 +5,7 @@ import sys
 from sys import exit
 
 
-
-consumer_key = settings['consumer_key']
-consumer_secret = settings['consumer_secret']
-access_token_key = settings['access_token_key']
-access_token_secret = settings['access_token_secret']
-
-if (len(sys.argv) > 1 and sys.argv[1] == "DESTROY"):
-	try:
-		api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)	
-	except twitter.TwitterError:
-		print api.message
-
-	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-	with open(os.path.join(__location__, 'TweetIDs.txt'), 'r') as file:
-		for line in file.readlines():
-			api.DestroyStatus(int(line))
-
-	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-	open(os.path.join(__location__, 'Tweets.txt'), 'w')
-
-	print "All tweets wiped"
-	exit()
-
-
+# Constructs tweet from parameters
 
 def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = sentence
@@ -37,6 +14,48 @@ def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = ans.replace('$place', place)
 	ans = ans.replace('$vip', vip)
 	return ans
+
+def DESTROY():
+	consumer_key = settings['consumer_key']
+	consumer_secret = settings['consumer_secret']
+	access_token_key = settings['access_token_key']
+	access_token_secret = settings['access_token_secret']
+
+	try:
+		api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)	
+	except twitter.TwitterError:
+		print api.message
+
+	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+	with open(os.path.join(__location__, 'TweetIDs.txt'), 'r') as file:
+		for line in file.readlines():
+			try:
+				api.DestroyStatus(int(line))
+			except:
+				print api.message
+
+	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+	open(os.path.join(__location__, 'TweetIDs.txt'), 'w')
+
+	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+	open(os.path.join(__location__, 'Tweets.txt'), 'w')
+
+	print "All tweets wiped"
+	exit()
+
+# Sets API parameters from OAuthSettings (private)
+
+consumer_key = settings['consumer_key']
+consumer_secret = settings['consumer_secret']
+access_token_key = settings['access_token_key']
+access_token_secret = settings['access_token_secret']
+
+# Check for special DESTROY argument that wipes all tweets from twitter / Tweets.txt / TweetIDs.txt
+
+if (len(sys.argv) > 1 and sys.argv[1] == "DESTROY"):
+	DESTROY();
+	
+
 
 sentence_list = [
 	'$first_name $last_name travelled to $place to speak to $vip',
@@ -348,7 +367,7 @@ try:
 except twitter.TwitterError:
 	print api.message
 
-print "Tweet: " + tweet
+# Adding tweets / tweet ID's to respective files
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 with open(os.path.join(__location__, 'Tweets.txt'), 'a') as file:
