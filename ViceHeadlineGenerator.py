@@ -1,7 +1,34 @@
 import random, os
 from OAuthSettings import settings    #import authorization settings
 import twitter
+import sys
 from sys import exit
+
+
+
+consumer_key = settings['consumer_key']
+consumer_secret = settings['consumer_secret']
+access_token_key = settings['access_token_key']
+access_token_secret = settings['access_token_secret']
+
+if (len(sys.argv) > 1 and sys.argv[1] == "DESTROY"):
+	try:
+		api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)	
+	except twitter.TwitterError:
+		print api.message
+
+	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+	with open(os.path.join(__location__, 'TweetIDs.txt'), 'r') as file:
+		for line in file.readlines():
+			api.DestroyStatus(int(line))
+
+	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+	open(os.path.join(__location__, 'Tweets.txt'), 'w')
+
+	print "All tweets wiped"
+	exit()
+
+
 
 def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = sentence
@@ -10,9 +37,6 @@ def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = ans.replace('$place', place)
 	ans = ans.replace('$vip', vip)
 	return ans
-
-
-os.system('cls' if os.name=='nt' else 'clear')
 
 sentence_list = [
 	'$first_name $last_name travelled to $place to speak to $vip',
@@ -301,6 +325,8 @@ vip_list = [
 	'Moot, Founder of 4 Chan'
 ]
 
+os.system('cls' if os.name=='nt' else 'clear')
+
 #Randomly choose tweet elements
 
 sentence = sentence_list[random.randrange(0, len(sentence_list))]
@@ -310,11 +336,6 @@ place = place_list[random.randrange(0, len(place_list))]
 vip = vip_list[random.randrange(0, len(vip_list))]
 
 
-consumer_key = settings['consumer_key']
-consumer_secret = settings['consumer_secret']
-access_token_key = settings['access_token_key']
-access_token_secret = settings['access_token_secret']
-
 tweet = make_tweet(sentence, first_name, last_name, place, vip)
 
 try:
@@ -323,6 +344,7 @@ try:
 	print 'posting to Twitter...'
 	status = api.PostUpdate(tweet)
 	print '  post successful!\n\n'
+	tweet_id = status.id 
 except twitter.TwitterError:
 	print api.message
 
@@ -331,5 +353,9 @@ print "Tweet: " + tweet
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 with open(os.path.join(__location__, 'Tweets.txt'), 'a') as file:
 	file.write(tweet + '\n')
+
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+with open(os.path.join(__location__, 'TweetIDs.txt'), 'a') as file:
+	file.write(str(tweet_id) + '\n')
 
 exit()
