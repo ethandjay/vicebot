@@ -15,6 +15,8 @@ def make_tweet(sentence, first_name, last_name, place, vip):
 	ans = ans.replace('$vip', vip)
 	return ans
 
+# Deletes all tweets with IDs taken from TweetIDs.txt, clears that file and then clears Tweets.txt
+
 def DESTROY():
 	consumer_key = settings['consumer_key']
 	consumer_secret = settings['consumer_secret']
