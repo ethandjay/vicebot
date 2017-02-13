@@ -43,6 +43,10 @@ def DESTROY():
 	print "All tweets wiped"
 	exit()
 
+
+
+
+
 # Sets API parameters from OAuthSettings (private)
 
 consumer_key = settings['consumer_key']
