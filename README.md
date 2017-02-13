@@ -1,6 +1,11 @@
 # vicebot
 Python-based Twitter bot that generates mock Vice headlines
 
+Arguments for ViceHeadlineGenerator.py [optional]:
+	DESTROY - will delete all tweet on account and will wipe TweetIDs.txt and Tweets.txt
+	LOCAL   - will generate a tweet and print it but will not post it on the linked account
+	
+
 **LOAD OAUTH SETTINGS**  
 Assumes Twitter OAuth settings, saved in a file
 called OAuthSettings.py, saved in the following format:

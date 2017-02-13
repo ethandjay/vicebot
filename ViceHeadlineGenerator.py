@@ -191,7 +191,7 @@ place_list = [
 	'Manilla, Philippines at a Lady Boy auction',
 	'Oslo, Norway at a Nobel Price Pregame',
 	'An Albanian "Supreme" Sweatshop',
-	'The "Furry Hamster IPA" brewery in San Francisco ',
+	'The "Furry Hamster IPA" brewery in San Francisco',
 	'A Protest Concerning Walmarts Inaugural Superstore in Brooklyn',
 	'An eskimo rehab center in Carrot River, Saskatchewan',
 	'The 2nd cleanest oxygen bar in Machala, Ecuador',
