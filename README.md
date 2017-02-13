@@ -19,6 +19,6 @@ https://github.com/requests/requests-oauthlib
 * Python Twitter  
 https://github.com/bear/python-twitter
 
-Some structuring borrowed from Jeff's <a href='https://github.com/jeffThompson/RandomArtAssignmentBot'>bot</a>
+Some structuring borrowed from <a href="jeffreythompson.org">Jeff's</a> <a href='https://github.com/jeffThompson/RandomArtAssignmentBot'>bot</a>
 
 This project is released under a <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>Creative Commons BY-NC-SA License</a> - feel free to use, but <a href='mailto:mail@jeffreythompson.org'>please let me know</a>.
