@@ -368,22 +368,24 @@ try:
 	print '\n\n' + tweet + '\n\n'
 
 	#LOCAL argument prints generated tweet but doesn't post it
-	if (not (len(sys.argv) > 1 && sys.argv[1] == "LOCAL")):
+	if (not (len(sys.argv) > 1 and sys.argv[1] == "LOCAL")):
 		print 'posting to Twitter...'
 		status = api.PostUpdate(tweet)
 		print '  post successful!\n\n'
-	tweet_id = status.id 
+		tweet_id = status.id 
+
+		# Adding tweets / tweet ID's to respective files
+
+		__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+		with open(os.path.join(__location__, 'Tweets.txt'), 'a') as file:
+			file.write(tweet + '\n')
+
+		__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+		with open(os.path.join(__location__, 'TweetIDs.txt'), 'a') as file:
+			file.write(str(tweet_id) + '\n')
+
 except twitter.TwitterError:
 	print api.message
 
-# Adding tweets / tweet ID's to respective files
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-with open(os.path.join(__location__, 'Tweets.txt'), 'a') as file:
-	file.write(tweet + '\n')
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-with open(os.path.join(__location__, 'TweetIDs.txt'), 'a') as file:
-	file.write(str(tweet_id) + '\n')
 
 exit()
