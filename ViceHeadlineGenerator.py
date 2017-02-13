@@ -365,13 +365,13 @@ tweet = make_tweet(sentence, first_name, last_name, place, vip)
 
 try:
 	api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)	
-	print '\n\n' + tweet + '\n\n'
+	print '\n' + tweet + '\n'
 
 	#LOCAL argument prints generated tweet but doesn't post it
 	if (not (len(sys.argv) > 1 and sys.argv[1] == "LOCAL")):
 		print 'posting to Twitter...'
 		status = api.PostUpdate(tweet)
-		print '  post successful!\n\n'
+		print '  post successful!\n'
 		tweet_id = status.id 
 
 		# Adding tweets / tweet ID's to respective files
