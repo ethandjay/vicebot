@@ -238,6 +238,11 @@ action_list = [
 	'chat with',
 	'find out more about',
 	'chill with'
+	'talk politics with',
+	'try experimental opiates with',
+	'drop acid with',
+	'learn the ancient traditions of',
+	'try the traditional food of'
 ]
 
 vip_list = [
