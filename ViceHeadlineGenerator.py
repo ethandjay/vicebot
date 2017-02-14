@@ -7,11 +7,12 @@ from sys import exit
 
 # Constructs tweet from parameters
 
-def make_tweet(sentence, first_name, last_name, place, vip):
+def make_tweet(sentence, first_name, last_name, place, action, vip):
 	ans = sentence
 	ans = ans.replace('$first_name', first_name)
 	ans = ans.replace('$last_name', last_name)
 	ans = ans.replace('$place', place)
+	ans = ans.replace('$action', action)
 	ans = ans.replace('$vip', vip)
 	return ans
 
@@ -64,12 +65,13 @@ if (len(sys.argv) > 1 and sys.argv[1] == "DESTROY"):
 
 
 sentence_list = [
-	'$first_name $last_name travelled to $place to speak to $vip',
-	'We sent $first_name $last_name to smoke weed with $vip in $place',
-	'We sent $first_name $last_name to $place to chat with $vip',
-	'We sent $first_name $last_name to to chat with $vip in $place',
-	'$first_name $last_name set out to $place to chat with $vip',
-	'$first_name $last_name travelled to $place to chill with $vip',
+	'$first_name $last_name travelled to $place to $action $vip',
+	'We sent $first_name $last_name to $action $vip in $place',
+	'We sent $first_name $last_name to $place to $action $vip',
+	'$first_name $last_name took a trip to $place to $action $vip',
+	'We sent $first_name $last_name to $action $vip in $place',
+	'$first_name $last_name set out to $place to $action $vip',
+	'$first_name $last_name travelled to $place to $action $vip',
 ]
 
 first_name_list = [
@@ -230,6 +232,14 @@ place_list = [
 	'Chad at Boko Haram\'s Anuual Poker and Pizza Party'
 ]
 
+action_list = [
+	'speak to',
+	'smoke weed with',
+	'chat with',
+	'find out more about',
+	'chill with'
+]
+
 vip_list = [
 	'Vegan Sicarios',
 	'Pope Saint John Paul II',
@@ -361,9 +371,10 @@ while (too_long == True):
 	first_name = first_name_list[random.randrange(0, len(first_name_list))]
 	last_name = last_name_list[random.randrange(0, len(last_name_list))]
 	place = place_list[random.randrange(0, len(place_list))]
+	action = action_list[random.randrange(0, len(action_list))]
 	vip = vip_list[random.randrange(0, len(vip_list))]
 
-	tweet = make_tweet(sentence, first_name, last_name, place, vip)
+	tweet = make_tweet(sentence, first_name, last_name, place, action, vip)
 
 	if (len(tweet) <= 140):
 		too_long = False
