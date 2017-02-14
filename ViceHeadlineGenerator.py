@@ -367,6 +367,8 @@ while (too_long == True):
 
 	if (len(tweet) <= 140):
 		too_long = False
+	else:
+		print "Tweet too long, retrying...\n"
 
 
 try:
