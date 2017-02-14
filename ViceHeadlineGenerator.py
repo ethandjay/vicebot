@@ -180,7 +180,7 @@ place_list = [
 	'The orgy clubs of 1960\'s Moscow',
 	'A sauerkraut cafe in Warsaw\'s Zoliborz Ghetto',
 	'Medellin Columbia\'s Most Exclusive Cartel Hideout',
-	'Sarah Lawrence\'s Annual Coffee & Cloitus Student Faculty meeting',
+	'Sarah Lawrence\'s Annual Coffee & Coitus Student Faculty meeting',
 	'A Bicycle Smoothie Shop in North Portland',
 	'Bill Belichick\'s Cape Code Summerhouse Patio',
 	'Mobile, Alabama\'s Oldest KKK Sponsored Church ',
@@ -354,14 +354,20 @@ os.system('cls' if os.name=='nt' else 'clear')
 
 #Randomly choose tweet elements
 
-sentence = sentence_list[random.randrange(0, len(sentence_list))]
-first_name = first_name_list[random.randrange(0, len(first_name_list))]
-last_name = last_name_list[random.randrange(0, len(last_name_list))]
-place = place_list[random.randrange(0, len(place_list))]
-vip = vip_list[random.randrange(0, len(vip_list))]
+too_long = True
 
+while (too_long == True):
+	sentence = sentence_list[random.randrange(0, len(sentence_list))]
+	first_name = first_name_list[random.randrange(0, len(first_name_list))]
+	last_name = last_name_list[random.randrange(0, len(last_name_list))]
+	place = place_list[random.randrange(0, len(place_list))]
+	vip = vip_list[random.randrange(0, len(vip_list))]
 
-tweet = make_tweet(sentence, first_name, last_name, place, vip)
+	tweet = make_tweet(sentence, first_name, last_name, place, vip)
+
+	if (len(tweet) <= 140):
+		too_long = False
+
 
 try:
 	api = twitter.Api(consumer_key = consumer_key, consumer_secret = consumer_secret, access_token_key = access_token_key, access_token_secret = access_token_secret)	
