@@ -1,7 +1,7 @@
 import random, os
 from OAuthSettings import settings    #import authorization settings
-import twitter
 import sys
+import twitter
 from sys import exit
 
 
@@ -31,13 +31,14 @@ def DESTROY():
 	except twitter.TwitterError:
 		print api.message
 
+	print "Iterating through stored tweet IDs and deleting corresponding tweets\n"
 	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 	with open(os.path.join(__location__, 'TweetIDs.txt'), 'r') as file:
 		for line in file.readlines():
 			try:
 				api.DestroyStatus(int(line))
 			except:
-				print api.message
+				print "No tweet corresponds to this ID, moving on"
 
 	__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 	open(os.path.join(__location__, 'TweetIDs.txt'), 'w')
@@ -126,7 +127,7 @@ first_name_list = [
 	'Samuel',
 	'Mort',
 	'Arthur',
-	'Normal',
+	'Norm',
 	'Philip',
 	'Walter',
 	'Amit',
@@ -252,7 +253,7 @@ place_list = [
 	'a slightly less gentrified area of Cherokee St., St. Louis',
 	'Joseph Kony\'s summer home',
 	'Aleppo',
-	'the slums of capetown',
+	'the slums of Cape Town',
 	'the lower ionosphere',
 	'Section 2 of CSE131: Introduction to Computer Science',
 	'Compton',
@@ -262,7 +263,7 @@ place_list = [
 	'the Witches Hut in the Black Forest',
 	'the borean tundra',
 	'the Navajo plains',
-	'Blackfoot Reservation',
+	'the Blackfoot Reservation',
 	'a Lady Boy Strip-club in Southeast Bangkok',
 	'the orgy clubs of 1960\'s Moscow',
 	'a sauerkraut cafe in Warsaw\'s Zoliborz Ghetto',
@@ -274,7 +275,7 @@ place_list = [
 	'a Theravada Buddhist Temple in Cheyenne, Montana',
 	'Prague\'s premier underground absinthe bar',
 	'the backseat of a Toyota Tundra in an Isis Camp in Raqua, Syria',
-	'Mussolini\'s fetish dungeon in Italian Wine Country',
+	'Mussolini\'s fetish dungeon in Italian wine country',
 	'Manilla, Philippines at a Lady Boy auction',
 	'Oslo, Norway at a Nobel Price Pregame',
 	'an Albanian "Supreme" Sweatshop',
@@ -304,6 +305,11 @@ place_list = [
 	'the cabin of a 73 foot yacht at 34.4238 degrees North, 118.5971 degrees West',
 	'Barbara Steisand\'s dog\'s 3500 sq. foot penthouse',
 	'Michael Jackson\'s coffin',
+	'a massive labyrinth under the North Dakota State Capitol',
+	'God\'s larynx',
+	'the black market for nondeterministic finite automata',
+	'a meme factory buried under the foothills of North Carolina',
+	'an abandoned uranium mine in the region of the former Adal Sultanate',
 	'James Buchanan\'s childhood home in Mercersberg, Pennsylvania',
 	'Ruth Bader Ginsberg\'s sensory deprivation chamber',
 	'an isolation tank in Aspen, Colorado',
@@ -330,6 +336,7 @@ action_list = [
 	'speak to',
 	'speak to',
 	'smoke weed with',
+	'smoke weed with',
 	'chat with',
 	'find out more about',
 	'find out more about',
@@ -341,10 +348,16 @@ action_list = [
 	'talk politics with',
 	'talk politics with',
 	'talk politics with',
+	'talk with',
+	'talk with',
+	'talk with',
+	'talk with',
 	'interview',
 	'interview',
 	'interview',
 	'interview',
+	'consult with',
+	'consult with',
 	'try experimental opiates with',
 	'drop acid with',
 	'learn the ancient traditions of',
@@ -381,7 +394,7 @@ vip_list = [
 	'Saidash Mongush',
 	'Eric Andre\'s foreskin',
 	'Vegan Sicarios',
-	'the ghost of Leonard Cohen, may he rest in peace',
+	'the ghost of Leonard Cohen (may he rest in peace)',
 	'Scott Walker, the music one',
 	'Michael Gira\'s pet iguana, Pain',
 	'Pope John Paul II',
@@ -396,7 +409,7 @@ vip_list = [
 	'Tom Cruise',
 	'Bordertown Coyotes',
 	'Iranian Kidney Donors',
-	'Al Gore, the inventor of the internet',
+	'Al Gore, the inventor of the Internet',
 	'the existential concept of Peter Griffin',
 	'Wendy (the fast food one, not the Peter Pan one)',
 	'a used condom',
@@ -405,10 +418,10 @@ vip_list = [
 	'Terracotta Warriors',
 	'British Necromancers',
 	'East Indian Shamans',
-	'Lynard Skynard\'s Personal Pilot',
-	'Pablo Escobar\'s Great Grandmother',
-	'Canadian Ultranationalists',
-	'Bodyart Suspension Gurus',
+	'Lynard Skynard\'s personal pilot',
+	'Pablo Escobar\'s great grandmother',
+	'Canadian ultranationalists',
+	'bodyart suspension gurus',
 	'Lizards and Wizards',
 	'a vegan, transgender, pansexual Catholic Nun',
 	'the Witoto Tribe of Northern Peru',
@@ -448,7 +461,7 @@ vip_list = [
 	'Coco the Gorrilla',
 	'a MacArthur Genius Grant recipient',
 	'Vladimir Putin\'s Horse',
-	'Angela Merkel\'s harem of Underage Syrian Refugees',
+	'Angela Merkel\'s harem of underage Syrian refugees',
 	'several Crips from Greenwich, Connecticut',
 	'Ron Jeremy',
 	'Mahatma Gahndi\'s thread dealer',
@@ -526,7 +539,7 @@ vip_list = [
 	'John Boehner\'s skin care specialist',
 	'death',
 	'Ivan the Terrible',
-	'Dijkstra\'s Algorithm',
+	'Dijkstra\'s Shortest Path Algorithm',
 	'Dave',
 	'Sean Spicer',
 	'the proletariat',
